@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "simple", "samples\simple\si
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{6957C121-EF7C-4605-BD9C-3835127CA078}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreWebPackHotModuleReload", "AspNetCoreWebPackHotModuleReload\AspNetCoreWebPackHotModuleReload.csproj", "{A710FFE8-89BC-4FA8-BEB0-1FE4ABC70457}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akakani.AspNetCore.DevMiddleware", "Akakani.AspNetCore.DevMiddleware\Akakani.AspNetCore.DevMiddleware.csproj", "{A710FFE8-89BC-4FA8-BEB0-1FE4ABC70457}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
