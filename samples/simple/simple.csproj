@@ -4,8 +4,64 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <TypeScriptToolsVersion>4.1</TypeScriptToolsVersion>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+  </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\AspNetCoreWebPackHotModuleReload\AspNetCoreWebPackHotModuleReload.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <!-- For Typescript to work in Visual Studio, tsconfig.json needs to be of build type 'Content' -->
+    <Content Remove="tsconfig.json" />
+    <Content Include="tsconfig.json">
+      <!-- Prevent tsconfig.json from being emitted to output -->
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Akakani.AspNetCore.DevMiddleware\Akakani.AspNetCore.DevMiddleware.csproj" />
+  </ItemGroup>
+
+  <!-- WEBPACK TARGETS -->
+  <ItemGroup>
+    <WebpackInputs Include="Styles\**\*" />
+    <WebpackInputs Include="Scripts\**\*" />
+    <WebpackInputs Include="webpack.*.js" />
+    <WebpackInputs Include="tsconfig.json" />
+    <WebpackInputs Include="package.json" />
+    <WebpackInputs Include="package-lock.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WebpackOutputs Include="wwwroot\css\**\*.min.css" />
+    <WebpackOutputs Include="wwwroot\js\**\*.min.js" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'@(WebpackOutputs)' == ''">
+    <!-- 
+      MSBuild skips a target if the Outputs item group evaluates to empty.
+      On the first build, there won't be any Webpack outputs (and we can't
+      predict what they will be because we don't know the hash results for
+      filenames), so instead we tell MSBuild there's an output file which
+      will never exist, which forces the target to always run on first
+      build.
+    -->
+    <WebpackOutputs Include="wwwroot\css\nonexistent.dat" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Tell 'Quick Up to Date' to check for web pack inputs when deciding of msbuild needs to be called -->
+    <UpToDateCheckInput Include="@(WebpackInputs)" />
+    <UpToDateCheckOutput Include="@(WebpackOutputs)" />
+  </ItemGroup>
+
+  <Target Name="Webpack" BeforeTargets="BeforeBuild" Inputs="@(WebpackInputs)" Outputs="@(WebpackOutputs)">
+    <Message Text="Running 'npx webpack --config webpack.4.config.js'" Importance="High" />
+    <Exec Command="npx webpack --config webpack.4.config.js" WorkingDirectory="$(ProjectDir)" />
+  </Target>
 
 </Project>

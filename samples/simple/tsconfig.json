@@ -1,0 +1,38 @@
+﻿{
+  "compileOnSave": false,
+
+  "compilerOptions": {
+    "noEmitHelpers": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noEmitOnError": true,
+    "alwaysStrict": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true,
+
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "target": "es5",
+    "module": "commonjs",
+
+    "sourceMap": true,
+
+    "lib": [
+        "es2015",
+        "dom"
+    ]
+  },
+  "include": [
+    "Scripts/**/*"
+  ],
+  "exclude": [
+    "bin",
+    "node_modules",
+    "obj",
+    "Properties",
+    "wwwroot"
+  ]
+}
