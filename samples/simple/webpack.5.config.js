@@ -11,7 +11,7 @@ module.exports = {
     devtool: isDevelopment ? "source-map" : "",
     target: "web",
 
-    // MiniCssExtractPlugin currently requires the cache to be disabled for HMR to work
+    // Webpack 5 only: HMR with MiniCssExtractPlugin currently requires the cache to be disabled
     cache: isDevelopment ? false : undefined,
 
     entry: {
