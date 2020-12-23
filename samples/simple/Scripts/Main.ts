@@ -4,6 +4,8 @@ import MiniatureClock from "./MiniatureClock";
 // LESS
 import "../Styles/main.less";
 
+// CSS
+import "../Styles/page.css"
 
 // Enable Hot Module Replacement
 if (module.hot) {
