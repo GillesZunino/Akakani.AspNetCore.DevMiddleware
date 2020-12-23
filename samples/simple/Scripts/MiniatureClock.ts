@@ -9,8 +9,17 @@ export default class MiniatureClock {
         this.iteration = 0;
     }
 
-    public run(): void {
+    public start(): void {
         this.setIntervalId = window.setInterval(() => this.updateClockDisplay(), 1000);
+    }
+
+    public stop():void {
+        if (this.setIntervalId !== -1) {
+            window.clearInterval(this.setIntervalId);
+            this.setIntervalId = -1;
+        }
+
+        this.iteration = 0;
     }
 
     private updateClockDisplay(): void {
