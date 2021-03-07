@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Sockets;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
@@ -131,10 +132,17 @@
                                         await context.Response.Body.FlushAsync();
                                     }
                                 }
+                                catch (SocketException)
+                                {
+                                    // The CopyToAsync task will throw SocketException ("An existing connection was forcibly closed by the remote host") when the ASP.NET Core application shuts down via Ctrl-C. Don't treat this as an error
+                                }
+                                catch (HttpRequestException)
+                                {
+                                    // The CopyToAsync task will throw HttpRequestxception ("Error while copying content to a stream") when the ASP.NET Core application shuts down via Ctrl-C. Don't treat this as an error
+                                }
                                 catch (OperationCanceledException)
                                 {
-                                    // The CopyToAsync task will be canceled if the client disconnects (e.g., user
-                                    // closes or refreshes the browser tab). Don't treat this as an error.
+                                    // The CopyToAsync task will be canceled if the client disconnects (e.g., user closes or refreshes the browser tab). Don't treat this as an error
                                 }
                             }
 
