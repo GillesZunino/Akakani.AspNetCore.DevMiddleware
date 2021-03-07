@@ -6,7 +6,7 @@
   "private": true,
   "//": {
     "less-loader-comment": "less-loader 8.0.0 or above requires Webpack 5. At the moment, less-loader 7.3.0 is the latest release supporting Webpack 4",
-    "webpack-comment": "When moving to Webpack >= 5.0.0, also upgrade other loaders / packages  (i.e. less-loader ...)"
+    "webpack-comment": "At the moment, 4.46.0 is the latest v4 release of Webpack. When moving to Webpack >= 5.0.0, also upgrade other loaders / packages  (i.e. less-loader ...)"
   },
   "devDependencies": {
     "@types/connect": "3.4.34",
