@@ -20,7 +20,7 @@ module.exports = {
 
     output: {
         path: path.join(__dirname, "wwwroot"),
-        filename: `js/[name].min.js`,
+        filename: "js/[name].min.js",
         publicPath: "/"
     },
 
@@ -53,6 +53,7 @@ module.exports = {
             }
         ]
     },
+    
     plugins: [
         new MiniCssExtractPlugin({
             filename: "css/[name].min.css",
