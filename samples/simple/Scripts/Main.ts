@@ -44,7 +44,7 @@ const miniatureClock: MiniatureClock = new MiniatureClock(document.getElementByI
 // Stash the miniature clock instance so its state can be saved and it can be disposed during Hot Module Replacement
 window.__MINIATURE_CLOCK__ = miniatureClock;
 
-// Apply Hot Module Replacement saved miniature clock state, if available
+// Apply Hot Module Replacement saved state to miniature clock, if available
 if (module.hot?.data?.miniatureClock) {
     console.log("Restoring window.__MINIATURE_CLOCK__ state");
     miniatureClock.iteration = module.hot?.data?.miniatureClock.currentIteration;
