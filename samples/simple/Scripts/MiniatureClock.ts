@@ -1,19 +1,24 @@
 export default class MiniatureClock {
     
     private span: HTMLSpanElement;
-    private iteration: number;
+    private currentIteration: number = 0;
     private setIntervalId: number = -1;
+
+    public get iteration() : number { return this.currentIteration; }
+    public set iteration(iteration: number) {this.currentIteration = iteration; }
 
     public constructor(clockSpan: HTMLSpanElement) {
         this.span = clockSpan;
-        this.iteration = 0;
     }
 
     public start(): void {
-        this.setIntervalId = window.setInterval(() => this.updateClockDisplay(), 1000);
+        this.setIntervalId = window.setInterval(() => {
+            this.iteration += 1;
+            this.updateClockDisplay();
+        }, 1000);
     }
 
-    public stop():void {
+    public stop(): void {
         if (this.setIntervalId !== -1) {
             window.clearInterval(this.setIntervalId);
             this.setIntervalId = -1;
@@ -23,8 +28,6 @@ export default class MiniatureClock {
     }
 
     private updateClockDisplay(): void {
-        this.iteration += 1;
-
         const today: Date = new Date();
         this.span.textContent = `Time: ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()} - Iteration ${this.iteration}`;
     }
