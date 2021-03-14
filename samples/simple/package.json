@@ -9,14 +9,12 @@
     "webpack-comment": "At the moment, 4.46.0 is the latest v4 release of Webpack. When moving to Webpack >= 5.0.0, also upgrade other loaders / packages  (i.e. less-loader ...)"
   },
   "devDependencies": {
-    "@types/connect": "3.4.34",
-    "@types/node": "14.14.32",
+    "@types/node": "14.14.34",
     "@types/webpack": "4.41.26",
     "@types/webpack-dev-middleware": "4.1.0",
     "@types/webpack-env": "1.16.0",
     "@types/webpack-hot-middleware": "2.25.3",
-    "connect": "3.7.0",
-    "css-loader": "5.1.1",
+    "css-loader": "5.1.2",
     "css-minimizer-webpack-plugin": "1.2.0",
     "less": "4.1.1",
     "less-loader": "7.3.0",
