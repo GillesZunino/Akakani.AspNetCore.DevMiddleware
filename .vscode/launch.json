@@ -1,0 +1,22 @@
+{
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Attach to Webpack dev server running from "${workspaceRoot}\\Akakani.AspNetCore.DevMiddleware\\Content\\*.js"
+            "name": "WP DevServer",
+            "port": 9229,
+            "request": "attach",
+            "continueOnAttach": true,
+            "type": "pwa-node",
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}\\Akakani.AspNetCore.DevMiddleware",
+             "resolveSourceMapLocations": [
+                 "${workspaceRoot}\\Akakani.AspNetCore.DevMiddleware\\Content\\*.js"
+             ],
+             "skipFiles": [
+                "<node_internals>/**"
+            ]
+        }
+    ]
+}
