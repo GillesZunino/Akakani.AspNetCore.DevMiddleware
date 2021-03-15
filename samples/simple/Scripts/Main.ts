@@ -15,7 +15,7 @@ declare global {
 
 // Handle Hot Module Replacement
 if (module.hot) {
-    // Accept the current module without notification of parents
+    // Accept the current module without notification of parents (we are the 'top level' module)
     module.hot.accept();
 
     // Register a dispose handler to transer state from running module(s) to module(s) we are hot replacing
