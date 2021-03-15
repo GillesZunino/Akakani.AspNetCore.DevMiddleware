@@ -54,7 +54,7 @@
 
             // Register a callback to be called should cancellation be requested
             terminateProcessCancellationToken = cancellationToken;
-            stopProcessCancellationRegistration = cancellationToken.Register(TerminateProcess);
+            stopProcessCancellationRegistration = cancellationToken.Register(() => TerminateProcess(spawnedProcess));
 
             // Start the process
             LogProcessStarting(processStartInfo);
@@ -162,18 +162,18 @@
             }
         }
 
-        private void TerminateProcess()
+        private void TerminateProcess(Process process)
         {
             try
             {
-                if ((spawnedProcess != null) && !spawnedProcess.HasExited)
+                if ((process != null) && !process.HasExited)
                 {
-                    spawnedProcess.Kill(true);
+                    process.Kill(true);
                 }
             }
             catch (Exception ex)
             {
-                // TODO
+                Logger.LogInformation("Failed to terminate process '{0} {1}' - pid:{2} - {3}", process.StartInfo.FileName, process.StartInfo.Arguments, process.Id, ex);
             }
         }
 
@@ -186,7 +186,7 @@
                     if (spawnedProcess != null)
                     {
                         // Make sure the Node process is finished
-                        TerminateProcess();
+                        TerminateProcess(spawnedProcess);
 
                         // Detach events
                         DisconnectFromProcessStreams(spawnedProcess);
