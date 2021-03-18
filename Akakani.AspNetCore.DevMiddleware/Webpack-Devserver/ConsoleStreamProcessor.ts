@@ -19,7 +19,7 @@ export default class ConsoleStreamProcessor {
             if (typeof value === "string") {
                 const argsClone = Array.prototype.slice.call(arguments, 0);
                 if (!value.startsWith(Logger.LogPrefix)) {
-                    value = `${Logger.LogPrefix}${postfix} ${value}`;
+                    value = `${Logger.LogPrefix}${postfix}${value}`;
                 }
                 argsClone[0] = value.replace(ConsoleStreamProcessor.FindNewlinesRegex, ConsoleStreamProcessor.EncodedNewline);
                 origWriteFunction.apply(this, argsClone);
