@@ -1,0 +1,36 @@
+﻿{
+  "compileOnSave": false,
+  
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "alwaysStrict": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "forceConsistentCasingInFileNames": true,
+    
+    "noEmitOnError": true,
+    "noEmitHelpers": true,
+
+    "target": "es6",
+    "module": "commonjs",
+	  "moduleResolution": "node",
+    "sourceMap": true,
+    
+    "types": [
+      "node"
+    ]
+  },
+  
+  "include": [
+    "*.ts"
+  ],
+
+  "exclude": [
+    "node_modules"
+  ]
+}
