@@ -53,7 +53,9 @@ module.exports = {
                     { test: /\.ts$/i, loader: "ts-loader" }
                 ]
             },
-            externals: [ WebpackNodeExternals() ],
+            externals: [ WebpackNodeExternals({
+                allowlist: [ "finalhandler", "encodeurl", "escape-html", "on-finished", "ee-first", "parseurl", "statuses", "unpipe", "utils-merge", "connect" ]
+            }) ],
             plugins: [
                 new CleanWebpackPlugin({
                     dry: false,
