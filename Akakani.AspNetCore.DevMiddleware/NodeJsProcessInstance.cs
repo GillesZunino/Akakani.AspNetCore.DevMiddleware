@@ -17,9 +17,9 @@
         {
         }
 
-        public Task<int> LaunchNodeJsAsync(string scriptName, string commandLineArguments, string workingDirectory, IDictionary<string, string> environmentVariables, bool enableDebugging, CancellationToken stopProcessCancellationToken)
+        public Task<int> LaunchNodeJsAsync(string scriptPath, string commandLineArguments, string workingDirectory, IDictionary<string, string> environmentVariables, bool enableDebugging, CancellationToken stopProcessCancellationToken)
         {
-            string arguments = PrepareNodeJsCommandLine(scriptName, commandLineArguments, enableDebugging);
+            string arguments = PrepareNodeJsCommandLine(scriptPath, commandLineArguments, enableDebugging);
             IDictionary<string, string> environmentVariablesWithNodeJsPath = AppendNodeJsPath(environmentVariables, workingDirectory);
             return LaunchAsync("node", arguments, workingDirectory, environmentVariablesWithNodeJsPath, stopProcessCancellationToken);
         }
@@ -40,14 +40,8 @@
             nodePath = string.IsNullOrEmpty(nodePath) ? (Environment.GetEnvironmentVariable(NodePathVariableName) ?? string.Empty) : nodePath;
 
             // Add working directory "node_modules" folder to NODE_PATH
-            if (!string.IsNullOrEmpty(nodePath))
-            {
-                nodePath += Path.PathSeparator;
-            }
-
-            // Copy given list of variables and insert NODE_PATH
             IDictionary<string, string> augmentedEnvironmentVariables = new Dictionary<string, string>(environmentVariables, StringComparer.Ordinal);
-            augmentedEnvironmentVariables[NodePathVariableName] = nodePath + Path.Combine(workingDirectory, NodeModulesDirectoryName);
+            augmentedEnvironmentVariables[NodePathVariableName] = (string.IsNullOrEmpty(nodePath) ? string.Empty : nodePath + Path.PathSeparator) + Path.Combine(workingDirectory, NodeModulesDirectoryName);
 
             return augmentedEnvironmentVariables;
         }
