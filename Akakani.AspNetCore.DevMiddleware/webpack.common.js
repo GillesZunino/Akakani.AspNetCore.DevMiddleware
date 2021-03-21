@@ -43,7 +43,7 @@ module.exports = {
                 filename: `[name].${outputSuffix}.js`
             },
             resolve: {
-                extensions: [ ".ts" ],
+                extensions: [ ".ts", ".js" ],
                 modules: [
                     "node_modules"
                 ]
